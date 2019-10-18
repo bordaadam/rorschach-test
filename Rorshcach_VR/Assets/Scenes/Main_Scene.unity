@@ -226,7 +226,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ec482a67304bec244ba76646189e9510, type: 3}
   - {fileID: 2800000, guid: 70f3f1c5fe1838649a608f4eccf9cea8, type: 3}
   rawImageComponent: {fileID: 549145257}
-  framesToWait: 0
+  framesToWait: 20
+  fileNameToSave: Elso_Paciens.txt
 --- !u!4 &648521809
 Transform:
   m_ObjectHideFlags: 0
