@@ -221,10 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f7e5f0f68016341b36b1048c0af026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 2800000, guid: 5320785a49701234f9d0364f765d7ee3, type: 3}
-  - {fileID: 2800000, guid: ec482a67304bec244ba76646189e9510, type: 3}
-  - {fileID: 2800000, guid: 70f3f1c5fe1838649a608f4eccf9cea8, type: 3}
+  textures: []
   rawImageComponent: {fileID: 549145257}
   framesToWait: 20
   fileNameToSave: Elso_Paciens.txt

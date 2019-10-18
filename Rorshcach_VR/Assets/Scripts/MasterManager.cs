@@ -6,7 +6,8 @@ using System;
 
 public class MasterManager : MonoBehaviour
 {
-    [SerializeField] private Texture[] textures; // This contains all of the pictures
+    //[SerializeField] private Texture2D[] textures; // This contains all of the pictures
+    [SerializeField] private List<Texture2D> textures;
     [SerializeField] private RawImage rawImageComponent;
     [SerializeField] private int framesToWait = 10;
     [SerializeField] private string fileNameToSave;
@@ -15,6 +16,7 @@ public class MasterManager : MonoBehaviour
     void Awake()
     {
         // TODO: read into textures all of the pictures (textures)
+        textures = Reader.GetImagesFromDirectory("D:\\kepek");
     }
 
     void Start()
@@ -34,11 +36,9 @@ public class MasterManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(imageIndex > textures.Length - 1)
-                imageIndex = 0; // Avoid IndexOutOfBoundsException
+            imageIndex = imageIndex % textures.Count; // to avoid indexing exception
             StartCoroutine(WaitForXFrames(framesToWait));
         }
-
     }
 
     private IEnumerator WaitForXFrames(int x)
@@ -52,7 +52,7 @@ public class MasterManager : MonoBehaviour
         }
         HideImage();
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
-        Logger.LogToFile(fileNameToSave, textures[imageIndex].name, startTime, endTime, framesToWait);
+        //Logger.LogToFile(fileNameToSave, textures[imageIndex].name, startTime, endTime, framesToWait);
         imageIndex++;
     }
 
