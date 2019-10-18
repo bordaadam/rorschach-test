@@ -28,24 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.button_selectDirectory = new System.Windows.Forms.Button();
+            this.textBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // button_selectDirectory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(356, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Testint label";
+            this.button_selectDirectory.Location = new System.Drawing.Point(69, 70);
+            this.button_selectDirectory.Name = "button_selectDirectory";
+            this.button_selectDirectory.Size = new System.Drawing.Size(216, 32);
+            this.button_selectDirectory.TabIndex = 0;
+            this.button_selectDirectory.Text = "Select directory to read from";
+            this.button_selectDirectory.UseVisualStyleBackColor = true;
+            this.button_selectDirectory.Click += new System.EventHandler(this.button_selectDirectory_Click);
+            // 
+            // textBox
+            // 
+            this.textBox.Location = new System.Drawing.Point(69, 108);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(486, 20);
+            this.textBox.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox);
+            this.Controls.Add(this.button_selectDirectory);
             this.Name = "Form1";
             this.Text = "Launcher";
             this.ResumeLayout(false);
@@ -55,7 +65,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_selectDirectory;
+        private System.Windows.Forms.TextBox textBox;
     }
 }
 

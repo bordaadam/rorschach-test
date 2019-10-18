@@ -16,5 +16,14 @@ namespace Rorschach_Launcher
         {
             InitializeComponent();
         }
+
+        private void button_selectDirectory_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if(fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Console.WriteLine(fbd.SelectedPath);
+            }
+        }
     }
 }
