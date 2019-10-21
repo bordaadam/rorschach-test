@@ -224,7 +224,7 @@ MonoBehaviour:
   textures: []
   rawImageComponent: {fileID: 549145257}
   framesToWait: 20
-  fileNameToSave: Elso_Paciens.txt
+  cmdInfo: 
 --- !u!4 &648521809
 Transform:
   m_ObjectHideFlags: 0

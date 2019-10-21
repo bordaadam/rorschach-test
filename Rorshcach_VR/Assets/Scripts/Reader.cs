@@ -19,6 +19,7 @@ public class Reader
             foreach(var name in images)
             {
                 Debug.Log(name);
+                // TODO: Filter jpg/png only
                 tmp.Add(LoadImage(name));
             }
 
