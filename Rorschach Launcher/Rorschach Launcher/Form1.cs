@@ -23,7 +23,7 @@ namespace Rorschach_Launcher
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.Description = "Choose a folder to read pictures from!";
             fbd.ShowNewFolderButton = false;
-            fbd.RootFolder = Environment.SpecialFolder.MyDocuments;
+            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             if(fbd.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fbd.SelectedPath);

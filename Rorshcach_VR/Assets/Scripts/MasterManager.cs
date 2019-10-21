@@ -9,16 +9,18 @@ public class MasterManager : MonoBehaviour
     //[SerializeField] private Texture2D[] textures; // This contains all of the pictures
     [SerializeField] private List<Texture2D> textures;
     [SerializeField] private RawImage rawImageComponent;
-    [SerializeField] private int framesToWait = 10;
     [SerializeField] private string fileNameToSave;
     private int imageIndex = 0;
+    
+    [SerializeField] private int framesToWait = 10;
+    private string folderPath;
 
     public string cmdInfo = "";
 
     void Awake()
     {
-        // TODO: read into textures all of the pictures (textures)
-        textures = Reader.GetImagesFromDirectory("D:\\kepek");
+        InitializeParams();
+        textures = Reader.GetImagesFromDirectory(folderPath);
     }
 
     void Start()
@@ -33,6 +35,7 @@ public class MasterManager : MonoBehaviour
             Debug.LogWarning("name of the file to save is null, but it shouldn't be!");
         }
 
+        /* TESTING */
         string[] args = Environment.GetCommandLineArgs();
         int i = 0;
         foreach(var arg in args)
@@ -40,6 +43,7 @@ public class MasterManager : MonoBehaviour
             cmdInfo += i.ToString() + ": " + arg + "\n";
             i++;
         }
+        /* TESTING */
     }
 
     void OnGUI()
@@ -81,5 +85,19 @@ public class MasterManager : MonoBehaviour
     private void HideImage()
     {
         rawImageComponent.enabled = false;
+    }
+
+    // 0 - the .exe itself
+    // 1 - folderpath of the images
+    // 2 - displaying duration in frames
+    private void InitializeParams()
+    {
+        string[] parameters = Environment.GetCommandLineArgs();
+        string folderPath = parameters[1];
+        int frame = Int32.Parse(parameters[2]);
+
+        // Set fields
+        this.folderPath = folderPath;
+        this.framesToWait = frame;
     }
 }

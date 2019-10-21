@@ -79,8 +79,7 @@
             // 
             // numericUpDown_frame
             // 
-            this.numericUpDown_frame.Hexadecimal = true;
-            this.numericUpDown_frame.Location = new System.Drawing.Point(171, 202);
+            this.numericUpDown_frame.Location = new System.Drawing.Point(181, 202);
             this.numericUpDown_frame.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -105,9 +104,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(34, 204);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 13);
+            this.label1.Size = new System.Drawing.Size(144, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Displaying image in frames";
+            this.label1.Text = "Displaying duration in frames:";
             // 
             // textBox_exe
             // 
@@ -122,9 +121,9 @@
             this.label_exe.AutoSize = true;
             this.label_exe.Location = new System.Drawing.Point(34, 118);
             this.label_exe.Name = "label_exe";
-            this.label_exe.Size = new System.Drawing.Size(85, 13);
+            this.label_exe.Size = new System.Drawing.Size(101, 13);
             this.label_exe.TabIndex = 7;
-            this.label_exe.Text = ".exe Path (Unity)";
+            this.label_exe.Text = ".exe of the program:";
             // 
             // button_exe
             // 
