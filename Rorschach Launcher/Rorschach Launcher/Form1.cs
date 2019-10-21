@@ -27,20 +27,21 @@ namespace Rorschach_Launcher
             if(fbd.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fbd.SelectedPath);
-                textBox.Text = fbd.SelectedPath;
+                textBox_folder.Text = fbd.SelectedPath;
             }
         }
 
         private void button_launch_Click(object sender, EventArgs e)
         {
             // Values to send to Unity
-            string folderPath = textBox.Text;
+            string folderPath = textBox_folder.Text;
+            string exePath = textBox_exe.Text;
             string frame = numericUpDown_frame.Value.ToString();
 
             // TODO: send
             ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "Rorschach_VR";
-            info.Arguments = "elso masodik harmadik??";
+            info.FileName = exePath;
+            info.Arguments = folderPath + " " + frame;
             try
             {
                 Process.Start(info);
@@ -50,6 +51,17 @@ namespace Rorschach_Launcher
             {
                 Console.WriteLine("Something went wrong...");
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button_exe_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select Rorschach_VR.exe";
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox_exe.Text = ofd.FileName;
             }
         }
     }

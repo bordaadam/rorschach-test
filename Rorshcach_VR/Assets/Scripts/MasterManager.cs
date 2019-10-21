@@ -13,6 +13,8 @@ public class MasterManager : MonoBehaviour
     [SerializeField] private string fileNameToSave;
     private int imageIndex = 0;
 
+    public string cmdInfo = "";
+
     void Awake()
     {
         // TODO: read into textures all of the pictures (textures)
@@ -30,7 +32,21 @@ public class MasterManager : MonoBehaviour
         {
             Debug.LogWarning("name of the file to save is null, but it shouldn't be!");
         }
+
+        string[] args = Environment.GetCommandLineArgs();
+        int i = 0;
+        foreach(var arg in args)
+        {
+            cmdInfo += i.ToString() + ": " + arg + "\n";
+            i++;
+        }
     }
+
+    void OnGUI()
+     {
+         Rect r = new Rect(5,5, 800, 500);
+         GUI.Label(r, cmdInfo);
+     }
 
     void Update()
     {
