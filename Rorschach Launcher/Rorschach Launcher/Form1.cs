@@ -20,9 +20,13 @@ namespace Rorschach_Launcher
         private void button_selectDirectory_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if(fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            fbd.Description = "Choose a folder to read pictures from!";
+            fbd.ShowNewFolderButton = false;
+            fbd.RootFolder = Environment.SpecialFolder.MyDocuments;
+            if(fbd.ShowDialog() == DialogResult.OK)
             {
                 Console.WriteLine(fbd.SelectedPath);
+                textBox.Text = fbd.SelectedPath;
             }
         }
     }
