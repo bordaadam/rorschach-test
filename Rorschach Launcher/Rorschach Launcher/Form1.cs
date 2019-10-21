@@ -33,15 +33,18 @@ namespace Rorschach_Launcher
 
         private void button_launch_Click(object sender, EventArgs e)
         {
+            string exePath = textBox_exe.Text;
+
             // Values to send to Unity
             string folderPath = textBox_folder.Text;
-            string exePath = textBox_exe.Text;
             string frame = numericUpDown_frame.Value.ToString();
+            string folderToLog = textBox_folderToLog.Text;
+            string nameOfFile = textBox_nameOfFile.Text;
 
             // TODO: send
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = exePath;
-            info.Arguments = folderPath + " " + frame;
+            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile;
             try
             {
                 Process.Start(info);
@@ -62,6 +65,19 @@ namespace Rorschach_Launcher
             if(ofd.ShowDialog() == DialogResult.OK)
             {
                 textBox_exe.Text = ofd.FileName;
+            }
+        }
+
+        private void button_folderToLog_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Choose a folder to log into!";
+            fbd.ShowNewFolderButton = true;
+            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                Console.WriteLine(fbd.SelectedPath);
+                textBox_folderToLog.Text = fbd.SelectedPath;
             }
         }
     }

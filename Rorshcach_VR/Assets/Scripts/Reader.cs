@@ -37,6 +37,7 @@ public class Reader
         byte[] fileData;
         fileData = File.ReadAllBytes(name);
         tex = new Texture2D(_WIDTH, _HEIGHT);
+        tex.name = name; // TODO: chop name of the file (D:\pictures\r1.png --> r1.png)
         tex.LoadImage(fileData);
 
         return tex;
