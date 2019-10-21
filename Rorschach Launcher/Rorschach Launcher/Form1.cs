@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,28 @@ namespace Rorschach_Launcher
             {
                 Console.WriteLine(fbd.SelectedPath);
                 textBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void button_launch_Click(object sender, EventArgs e)
+        {
+            // Values to send to Unity
+            string folderPath = textBox.Text;
+            string frame = numericUpDown_frame.Value.ToString();
+
+            // TODO: send
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "Rorschach_VR";
+            info.Arguments = "elso masodik harmadik??";
+            try
+            {
+                Process.Start(info);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went wrong...");
+                Console.WriteLine(ex.Message);
             }
         }
     }
