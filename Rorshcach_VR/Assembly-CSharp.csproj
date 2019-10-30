@@ -55,7 +55,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Logger.cs" />
      <Compile Include="Assets\Scripts\MasterManager.cs" />
+     <Compile Include="Assets\Scripts\PatientMovement.cs" />
      <Compile Include="Assets\Scripts\Reader.cs" />
+     <Compile Include="Assets\Scripts\Utils.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Unity Projects/rorschach-test/Rorshcach_VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
