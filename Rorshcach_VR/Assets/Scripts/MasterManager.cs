@@ -15,6 +15,7 @@ public class MasterManager : MonoBehaviour
     private string folderPath;
     private string folderToLog;
     private string nameOfFile;
+    private string patientInfo;
 
     public string cmdInfo = "";
 
@@ -70,7 +71,7 @@ public class MasterManager : MonoBehaviour
         }
         HideImage();
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
-        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[imageIndex].name, startTime, endTime, framesToWait);
+        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[imageIndex].name, startTime, endTime, framesToWait, patientInfo);
         Debug.Log(textures[imageIndex].name);
         imageIndex++;
     }
@@ -91,6 +92,7 @@ public class MasterManager : MonoBehaviour
     // 2 - displaying duration in frames
     // 3 - folder to log into
     // 4 - name of the logged file
+    // 5 - patient info
     private void InitializeParams()
     {
         string[] parameters = Environment.GetCommandLineArgs();
@@ -100,5 +102,6 @@ public class MasterManager : MonoBehaviour
         this.framesToWait = Int32.Parse(parameters[2]);
         this.folderToLog = parameters[3];
         this.nameOfFile = parameters[4];
+        this.patientInfo = parameters[5];
     }
 }
