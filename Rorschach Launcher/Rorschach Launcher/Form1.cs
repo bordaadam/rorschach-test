@@ -36,15 +36,20 @@ namespace Rorschach_Launcher
             string exePath = textBox_exe.Text;
 
             // Values to send to Unity
+            string patient = textBox_patient.Text;
             string folderPath = textBox_folder.Text;
             string frame = numericUpDown_frame.Value.ToString();
             string folderToLog = textBox_folderToLog.Text;
             string nameOfFile = textBox_nameOfFile.Text;
 
-            // TODO: send
+            if(!nameOfFile.Contains(".txt"))
+            {
+                nameOfFile += ".txt";
+            }
+
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = exePath;
-            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile;
+            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile + " " + patient;
             try
             {
                 Process.Start(info);
