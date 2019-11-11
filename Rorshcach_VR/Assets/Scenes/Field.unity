@@ -3127,6 +3127,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967045226}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1017694130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4664143841794973095, guid: 56ca2f6a225c563428f11910255cf069,
+    type: 3}
+  m_PrefabInstance: {fileID: 29620156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017694133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017694130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c226ae7607b9e084a867a85a64b400d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 0
+  dayColor: {r: 0, g: 0, b: 0, a: 0}
+  nightColor: {r: 0, g: 0, b: 0, a: 0}
+  dayMat: {fileID: 2100000, guid: 3e56423e1fe71f94ea97f5bb2004a7e6, type: 2}
+  cloudyMat: {fileID: 2100000, guid: d11d338e6a849d84f85a289f91b3fa00, type: 2}
+  nightMat: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
 --- !u!1 &1022358496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,7 +5601,7 @@ GameObject:
   - component: {fileID: 1764497229}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

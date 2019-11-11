@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class MasterManager : MonoBehaviour
+public class ImageManager : MonoBehaviour
 {
     private List<Texture2D> textures;
     [SerializeField] private RawImage rawImageComponent;
     
     [SerializeField] private int framesToWait = 10;
+    
     private string folderPath;
     private string folderToLog;
     private string nameOfFile;
@@ -27,6 +28,7 @@ public class MasterManager : MonoBehaviour
 
         textures = Reader.GetImagesFromDirectory(folderPath);
         Debug.Log("Ennyi kep lett betoltve: " + textures.Count);
+        
     }
 
     void Start()
