@@ -15,11 +15,13 @@ public class LightManager : MonoBehaviour
     [SerializeField] private Material dayMat;
     [SerializeField] private Material cloudyMat;
     [SerializeField] private Material nightMat;
+    private AudioSource birdsAudioSource;
 
     void Start()
     {
         light = GameObject.FindGameObjectWithTag("Light").GetComponent<Light>();
         skybox = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Skybox>();
+        birdsAudioSource =  GameObject.FindGameObjectWithTag("Birds").GetComponent<AudioSource>();
         lightIntensity = light.intensity;
         dayColor = light.color;
     }
@@ -40,19 +42,23 @@ public class LightManager : MonoBehaviour
         {
             skybox.material = dayMat;
             light.color = dayColor;
+            birdsAudioSource.enabled = true;
         }
         if(lightIntensity > 0.6 && lightIntensity < 1.15)
         {
             light.color = cloudyColor;
             skybox.material = cloudyMat;
+            birdsAudioSource.enabled = false;
         }
         if(lightIntensity < 0.6) {
             skybox.material = nightMat;
             light.color = nightColor;
+            birdsAudioSource.enabled = false;
 
         }
 
         lightIntensity = Mathf.Clamp(lightIntensity, MIN_INTENSITY, MAX_INTENSITY);
         light.intensity = lightIntensity;
     }
+
 }

@@ -21,8 +21,8 @@ public class ImageManager : MonoBehaviour
     void Awake()
     {
         //-------DEBUG-------
-        //InitializeParams();
-        this.folderPath = "D:\\kepek";
+        InitializeParams();
+        //this.folderPath = "D:\\kepek";
         //-------DEBUG-------
 
 
@@ -205,7 +205,7 @@ public class ImageManager : MonoBehaviour
         HideImage();
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
         //------DEBUG
-        //Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, patientInfo);
+        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, patientInfo);
         //------DEBUG
         //Debug.Log("Ez a kep lett megjelenitve: " + textures[index].name);
     }
