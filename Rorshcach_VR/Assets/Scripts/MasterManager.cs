@@ -6,10 +6,8 @@ using System;
 
 public class MasterManager : MonoBehaviour
 {
-    //[SerializeField] private Texture2D[] textures; // This contains all of the pictures
-    [SerializeField] private List<Texture2D> textures;
+    private List<Texture2D> textures;
     [SerializeField] private RawImage rawImageComponent;
-    private int imageIndex = 0;
     
     [SerializeField] private int framesToWait = 10;
     private string folderPath;
@@ -17,14 +15,18 @@ public class MasterManager : MonoBehaviour
     private string nameOfFile;
     private string patientInfo;
 
-    public string cmdInfo = "";
+    private string cmdInfo = "";
 
     void Awake()
     {
-        InitializeParams();
-        //this.folderPath = "D:\\kepek";
-        textures = Reader.GetImagesFromDirectory(folderPath);
+        //-------DEBUG-------
+        //InitializeParams();
+        this.folderPath = "D:\\kepek";
+        //-------DEBUG-------
 
+
+        textures = Reader.GetImagesFromDirectory(folderPath);
+        Debug.Log("Ennyi kep lett betoltve: " + textures.Count);
     }
 
     void Start()
@@ -53,15 +55,144 @@ public class MasterManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            imageIndex = imageIndex % textures.Count; // to avoid indexing exception
-            StartCoroutine(WaitForXFrames(framesToWait));
-        }
+        HandleInput();
     }
 
-    private IEnumerator WaitForXFrames(int x)
+    // TODO: Optimize input
+    private void HandleInput()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 0));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 1));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 2));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 3));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 4));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 5));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 6));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 7));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 8));
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 9));
+        }
+
+        if(Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 10));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 11));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 12));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 13));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 14));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 15));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 16));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 17));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 18));
+        }
+        if(Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 19));
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 20));
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 21));
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 22));
+        }
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 23));
+        }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 24));
+        }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 25));
+        }
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 26));
+        }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 27));
+        }
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 28));
+        }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            StartCoroutine(WaitForXFrames(framesToWait, 29));
+        }
+
+
+    }
+
+    private IEnumerator WaitForXFrames(int x, int index)
+    {
+        if(index >= textures.Count)
+            yield break;
+
+        rawImageComponent.texture = textures[index];
         ShowImage();
         string startTime = DateTime.Now.ToString("HH:mm:ss.fff");
         while(x > 0)
@@ -71,14 +202,14 @@ public class MasterManager : MonoBehaviour
         }
         HideImage();
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
-        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[imageIndex].name, startTime, endTime, framesToWait, patientInfo);
-        Debug.Log(textures[imageIndex].name);
-        imageIndex++;
+        //------DEBUG
+        //Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, patientInfo);
+        //------DEBUG
+        //Debug.Log("Ez a kep lett megjelenitve: " + textures[index].name);
     }
 
     private void ShowImage()
     {
-        rawImageComponent.texture = textures[imageIndex];
         rawImageComponent.enabled = true;
     }
 

@@ -18,7 +18,7 @@ public class Reader
             string[] images = Directory.GetFiles(path);
             foreach(var name in images)
             {
-                Debug.Log(name);
+                //Debug.Log(name);
                 // TODO: Filter jpg/png only
                 tmp.Add(LoadImage(name));
             }
