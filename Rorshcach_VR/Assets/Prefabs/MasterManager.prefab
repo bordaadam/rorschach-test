@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4664143841794973113}
   - component: {fileID: 4664143841794973112}
+  - component: {fileID: 1017694133}
   m_Layer: 0
   m_Name: MasterManager
   m_TagString: Untagged
@@ -43,7 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f7e5f0f68016341b36b1048c0af026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textures: []
   rawImageComponent: {fileID: 0}
   framesToWait: 20
-  cmdInfo: 
+--- !u!114 &1017694133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664143841794973095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c226ae7607b9e084a867a85a64b400d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensity: 0
+  dayColor: {r: 0, g: 0, b: 0, a: 0}
+  nightColor: {r: 0, g: 0, b: 0, a: 0}
+  dayMat: {fileID: 2100000, guid: 3e56423e1fe71f94ea97f5bb2004a7e6, type: 2}
+  cloudyMat: {fileID: 2100000, guid: d11d338e6a849d84f85a289f91b3fa00, type: 2}
+  nightMat: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}

@@ -10,6 +10,7 @@ public class LightManager : MonoBehaviour
     private Light light;
     [SerializeField] private float lightIntensity;
     [SerializeField] private Color dayColor;
+    [SerializeField] private Color cloudyColor;
     [SerializeField] private Color nightColor;
     [SerializeField] private Material dayMat;
     [SerializeField] private Material cloudyMat;
@@ -34,12 +35,22 @@ public class LightManager : MonoBehaviour
             lightIntensity -= 0.05f;
         }
 
+        //TODO: optimize this code snippet
         if(lightIntensity > 1.15) 
+        {
             skybox.material = dayMat;
+            light.color = dayColor;
+        }
         if(lightIntensity > 0.6 && lightIntensity < 1.15)
+        {
+            light.color = cloudyColor;
             skybox.material = cloudyMat;
-        else
-        skybox.material = nightMat;
+        }
+        if(lightIntensity < 0.6) {
+            skybox.material = nightMat;
+            light.color = nightColor;
+
+        }
 
         lightIntensity = Mathf.Clamp(lightIntensity, MIN_INTENSITY, MAX_INTENSITY);
         light.intensity = lightIntensity;

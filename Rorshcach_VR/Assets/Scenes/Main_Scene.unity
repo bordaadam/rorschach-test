@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 705507994}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1591,6 +1591,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923367495}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &972474691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2678719466817095675, guid: be72000cea13f22429f817c0af8a0f6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2678719466705496714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!45 &972474695
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972474691}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &1011613666
 GameObject:
   m_ObjectHideFlags: 0
