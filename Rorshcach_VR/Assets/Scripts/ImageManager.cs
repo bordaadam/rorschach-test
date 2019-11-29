@@ -18,6 +18,10 @@ public class ImageManager : MonoBehaviour
 
     private string cmdInfo = "";
 
+    private int secondsFromStart = 0;
+
+    private DateTime startingDateTime;
+
     void Awake()
     {
         //-------DEBUG-------
@@ -36,6 +40,12 @@ public class ImageManager : MonoBehaviour
         if(rawImageComponent == null)
         {
             Debug.LogWarning("RawImageComponent is null, but it shouldn't be!");
+
+        }
+
+        if(!Logger.FileExists(folderToLog + "\\" + nameOfFile))
+        {
+            Logger.LogPatientDescription(folderToLog + "\\" + nameOfFile, patientInfo);
         }
 
         /* TESTING */
@@ -47,6 +57,8 @@ public class ImageManager : MonoBehaviour
             i++;
         }
         /* TESTING */
+
+        startingDateTime = DateTime.Now;
     }
 
     void OnGUI()
@@ -196,7 +208,11 @@ public class ImageManager : MonoBehaviour
 
         rawImageComponent.texture = textures[index];
         ShowImage();
-        string startTime = DateTime.Now.ToString("HH:mm:ss.fff");
+
+        //innen kell a különbséget száolnunk
+
+        DateTime current = DateTime.Now;
+        string startTime = current.ToString("HH:mm:ss.fff");
         while(x > 0)
         {
             x--;
@@ -204,8 +220,9 @@ public class ImageManager : MonoBehaviour
         }
         HideImage();
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
+        TimeSpan elapsedTime = current - startingDateTime;
         //------DEBUG
-        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, patientInfo);
+        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, elapsedTime.ToString());
         //------DEBUG
         //Debug.Log("Ez a kep lett megjelenitve: " + textures[index].name);
     }
