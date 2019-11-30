@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+// TODO: 1db log metódus legyen, amibe bármit írhatok
 public class Logger
 {
 
@@ -14,10 +15,10 @@ public class Logger
         sw.Close();
     }
 
-    public static void LogPatientDescription(string path, string patientInfo)
+    public static void Log(string path, string text)
     {
         StreamWriter sw = new StreamWriter(path, true);
-        sw.WriteLine(patientInfo);
+        sw.WriteLine(text);
         sw.Close();
     }
 
