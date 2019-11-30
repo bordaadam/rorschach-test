@@ -222,7 +222,7 @@ public class ImageManager : MonoBehaviour
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
         TimeSpan elapsedTime = current - startingDateTime;
         //------DEBUG
-        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, elapsedTime.ToString());
+        Logger.LogToFile(folderToLog + "\\" + nameOfFile, textures[index].name, startTime, endTime, framesToWait, elapsedTime.Seconds.ToString());
         //------DEBUG
         //Debug.Log("Ez a kep lett megjelenitve: " + textures[index].name);
     }

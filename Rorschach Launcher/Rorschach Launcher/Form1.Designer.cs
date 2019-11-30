@@ -46,7 +46,10 @@
             this.label_patient = new System.Windows.Forms.Label();
             this.textBox_patient = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.openLogFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frame)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_selectDirectory
@@ -218,6 +221,23 @@
             this.toolTip.ReshowDelay = 0;
             this.toolTip.ShowAlways = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openLogFileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // openLogFileToolStripMenuItem
+            // 
+            this.openLogFileToolStripMenuItem.Name = "openLogFileToolStripMenuItem";
+            this.openLogFileToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.openLogFileToolStripMenuItem.Text = "Open Log File";
+            this.openLogFileToolStripMenuItem.Click += new System.EventHandler(this.openLogFileToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,9 +259,13 @@
             this.Controls.Add(this.label_folderPath);
             this.Controls.Add(this.textBox_folder);
             this.Controls.Add(this.button_selectDirectory);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Launcher";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frame)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,6 +290,8 @@
         private System.Windows.Forms.Label label_patient;
         private System.Windows.Forms.TextBox textBox_patient;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem openLogFileToolStripMenuItem;
     }
 }
 
