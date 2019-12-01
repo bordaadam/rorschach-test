@@ -39,7 +39,7 @@ public class ImageManager : MonoBehaviour
         {
             Logger.Log(data.FolderToLog + "\\" + data.LogFileName, data.PatientInfo);
             //TODO: milyen névként mentse el az adott hangfájlt?
-            Logger.Log(data.FolderToLog + "\\" + data.LogFileName, "oregember.wav");
+            Logger.Log(data.FolderToLog + "\\" + data.LogFileName, data.FolderToLog +  "\\hang.wav"); //TODO: ez ua. mint a 65.sor!!!!
         }
 
         cmdInfo += data.ImagesFolder + "\n" + data.Frames + "\n" + data.FolderToLog + "\n" + data.LogFileName + "\n" + data.PatientInfo;
@@ -47,7 +47,7 @@ public class ImageManager : MonoBehaviour
         startingDateTime = DateTime.Now;
 
         // Elkezdődött a hangfelvétel....
-        AudioManager.audioClip = Microphone.Start(null, false, 10, 44100);
+        AudioManager.audioClip = Microphone.Start(null, false, 100, 44100);
     }
 
     void OnGUI()
@@ -62,7 +62,7 @@ public class ImageManager : MonoBehaviour
         // TODO: kilépéskor automatikusan elmentse a hangot
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            AudioManager.SaveAudioClipToWav("hello hang");
+            AudioManager.SaveAudioClipToWav("hang"); //TODO: ez ua. mint a 42. sor
         }
         HandleInput();
     }

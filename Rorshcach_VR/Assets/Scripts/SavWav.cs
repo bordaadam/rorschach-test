@@ -39,7 +39,7 @@ public static class SavWav {
 		}
 
 		//var filepath = Path.Combine(Application.persistentDataPath, filename);
-		var filepath = Path.Combine("D:\\hangcucc", filename);
+		var filepath = Path.Combine(DataHolder.Instance.FolderToLog, filename);
 
 		Debug.Log(filepath);
 
