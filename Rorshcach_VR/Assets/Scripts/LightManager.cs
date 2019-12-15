@@ -16,6 +16,12 @@ public class LightManager : MonoBehaviour
     [SerializeField] private Material cloudyMat;
     [SerializeField] private Material nightMat;
     private AudioSource birdsAudioSource;
+    private float decider = 1.5f;
+    [SerializeField] private GameObject rain;
+    private DayState dayState;
+
+    private enum DayState {Sunny, BetweenSunnyAndNight, Night, BetweenNightAndRainy, Rainy}
+    private float b1 = 1.15f, b2 = 0.6f, b3 = 0.2f, b4 = -0.5f;
 
     void Start()
     {
@@ -24,41 +30,113 @@ public class LightManager : MonoBehaviour
         birdsAudioSource =  GameObject.FindGameObjectWithTag("Birds").GetComponent<AudioSource>();
         lightIntensity = light.intensity;
         dayColor = light.color;
+        dayState = DayState.Sunny;
     }
 
     void Update()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0f) 
         {
-            lightIntensity += 0.05f;
+            decider += 0.05f;
+
+            switch(dayState) {
+
+                case DayState.Sunny:
+                    light.intensity += 0.05f;
+                    break;
+
+                case DayState.Rainy:
+                    if(decider > b4) {
+                        dayState = DayState.BetweenNightAndRainy;
+                        skybox.material = cloudyMat;
+                        birdsAudioSource.enabled = true;
+                        light.color = cloudyColor;
+                        rain.SetActive(false);
+                    }
+                    break;
+
+                case DayState.BetweenNightAndRainy:
+                    if(decider > b3) {
+                        light.intensity -= 0.05f;
+                        dayState = DayState.Night;
+                        skybox.material = nightMat;
+                        light.color = nightColor;
+                        birdsAudioSource.enabled = false;
+                    }
+                    break;
+
+                case DayState.Night:
+                    light.intensity += 0.05f;
+                    if(decider > b2) {
+                        dayState = DayState.BetweenSunnyAndNight;
+                        skybox.material = cloudyMat;
+                        light.color = cloudyColor;
+                    }
+                    break;
+
+                case DayState.BetweenSunnyAndNight:
+                    light.intensity += 0.05f;
+                    if(decider > b1) {
+                        dayState = DayState.Sunny;
+                        skybox.material = dayMat;
+                        birdsAudioSource.enabled = true;
+                        light.color = dayColor;
+                    }
+                    break;
+
+
+            }
+
         } 
         else if(Input.GetAxis("Mouse ScrollWheel") < 0f) 
         {
-            lightIntensity -= 0.05f;
+            decider -= 0.05f;
+
+            switch(dayState) {
+
+
+                case DayState.Sunny:
+                    light.intensity -= 0.05f;
+                    if(decider < b1) {
+                        dayState = DayState.BetweenSunnyAndNight;
+                        skybox.material = cloudyMat;
+                        birdsAudioSource.enabled = true;
+                        light.color = cloudyColor;
+                    }
+                    break;
+                case DayState.BetweenSunnyAndNight:
+                    light.intensity -= 0.05f;
+                    if(decider < b2) {
+                        dayState = DayState.Night;
+                        skybox.material = nightMat;
+                        birdsAudioSource.enabled = false;
+                        light.color = nightColor;
+                    }
+                    break;
+
+                case DayState.Night:
+                    light.intensity += 0.05f;
+                    if(decider < b3) {
+                        dayState = DayState.BetweenNightAndRainy;
+                        skybox.material = cloudyMat;
+                        light.color = cloudyColor;
+                    }
+
+                    break;
+
+                case DayState.BetweenNightAndRainy:
+                    if(decider < b4) {
+                        rain.SetActive(true);
+                        dayState = DayState.Rainy;
+                        skybox.material = cloudyMat;
+                        // TODO: eso material es light
+                    }
+                    break;
+            }
         }
 
-        //TODO: optimize this code snippet
-        if(lightIntensity > 1.15) 
-        {
-            skybox.material = dayMat;
-            light.color = dayColor;
-            birdsAudioSource.enabled = true;
-        }
-        if(lightIntensity > 0.6 && lightIntensity < 1.15)
-        {
-            light.color = cloudyColor;
-            skybox.material = cloudyMat;
-            birdsAudioSource.enabled = false;
-        }
-        if(lightIntensity < 0.6) {
-            skybox.material = nightMat;
-            light.color = nightColor;
-            birdsAudioSource.enabled = false;
-
-        }
-
-        lightIntensity = Mathf.Clamp(lightIntensity, MIN_INTENSITY, MAX_INTENSITY);
-        light.intensity = lightIntensity;
+        decider = Mathf.Clamp(decider, -1f, 1.5f);
+        light.intensity = Mathf.Clamp(light.intensity, -1f, 1.5f);
     }
 
 }
