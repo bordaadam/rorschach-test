@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: rain
       value: 
       objectReference: {fileID: 1918471879}
+    - target: {fileID: 1017694133, guid: 56ca2f6a225c563428f11910255cf069, type: 3}
+      propertyPath: tmpMat
+      value: 
+      objectReference: {fileID: 2100000, guid: e523c896238589445ae28370258d26c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ca2f6a225c563428f11910255cf069, type: 3}
 --- !u!1001 &120472266
