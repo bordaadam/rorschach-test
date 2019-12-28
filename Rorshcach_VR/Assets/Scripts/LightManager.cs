@@ -8,7 +8,6 @@ public class LightManager : MonoBehaviour
     private const float MAX_INTENSITY = 1.5f;
     private Skybox skybox;
     private Light light;
-    [SerializeField] private float lightIntensity;
     [SerializeField] private Color dayColor;
     [SerializeField] private Color cloudyColor;
     [SerializeField] private Color nightColor;
@@ -21,6 +20,10 @@ public class LightManager : MonoBehaviour
     [SerializeField] private GameObject rain;
     [SerializeField] private DayState dayState;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource source_birds;
+    [SerializeField] private AudioSource source_storm;
+
     private enum DayState {Sunny, BetweenSunnyAndNight, Night, BetweenNightAndRainy, Rainy}
     private float b1 = 1.15f, b2 = 0.6f, b3 = 0.2f, b4 = -0.5f;
 
@@ -29,7 +32,6 @@ public class LightManager : MonoBehaviour
         light = GameObject.FindGameObjectWithTag("Light").GetComponent<Light>();
         skybox = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Skybox>();
         birdsAudioSource =  GameObject.FindGameObjectWithTag("Birds").GetComponent<AudioSource>();
-        lightIntensity = light.intensity;
         dayColor = light.color;
         dayState = DayState.Sunny;
     }
@@ -44,16 +46,18 @@ public class LightManager : MonoBehaviour
 
                 case DayState.Sunny:
                     light.intensity += 0.05f;
+                    source_birds.volume += 0.05f;
                     break;
 
                 case DayState.Rainy:
                 light.intensity += 0.05f;
+                source_storm.volume -= 0.1f;
                     if(decider > b4) {
                         dayState = DayState.BetweenNightAndRainy;
                         skybox.material = tmpMat;
-                        birdsAudioSource.enabled = true;
                         light.color = cloudyColor;
                         rain.SetActive(false);
+                        source_storm.enabled = false;
                     }
                     break;
 
@@ -78,7 +82,9 @@ public class LightManager : MonoBehaviour
 
                 case DayState.BetweenSunnyAndNight:
                     light.intensity += 0.05f;
+                    source_birds.volume += 0.05f;
                     if(decider > b1) {
+                    source_birds.enabled = true;
                         dayState = DayState.Sunny;
                         skybox.material = dayMat;
                         birdsAudioSource.enabled = true;
@@ -95,13 +101,21 @@ public class LightManager : MonoBehaviour
             decider -= 0.05f;
 
             switch(dayState) {
+
+                case DayState.Rainy:
+                    source_storm.volume += 0.05f;
+                    break;
+
+
                 case DayState.Sunny:
                     light.intensity -= 0.05f;
+                    source_birds.volume -= 0.1f;
                     if(decider < b1) {
                         dayState = DayState.BetweenSunnyAndNight;
                         skybox.material = tmpMat;
                         birdsAudioSource.enabled = true;
                         light.color = cloudyColor;
+                        source_birds.enabled = false;
                     }
                     break;
                 case DayState.BetweenSunnyAndNight:
@@ -127,6 +141,7 @@ public class LightManager : MonoBehaviour
                 case DayState.BetweenNightAndRainy:
                     if(decider < b4) {
                         rain.SetActive(true);
+                        source_storm.enabled = true;
                         dayState = DayState.Rainy;
                         skybox.material = cloudyMat;
                     }
