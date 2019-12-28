@@ -46,10 +46,14 @@
             // 
             // gridView
             // 
+            this.gridView.AllowUserToDeleteRows = false;
+            this.gridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridView.Location = new System.Drawing.Point(12, 57);
             this.gridView.Name = "gridView";
-            this.gridView.Size = new System.Drawing.Size(776, 381);
+            this.gridView.ReadOnly = true;
+            this.gridView.Size = new System.Drawing.Size(1238, 592);
             this.gridView.TabIndex = 3;
             this.gridView.Visible = false;
             this.gridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellClick);
@@ -58,7 +62,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1262, 661);
             this.Controls.Add(this.gridView);
             this.Controls.Add(this.button_open);
             this.Name = "OpenLogFileWindow";

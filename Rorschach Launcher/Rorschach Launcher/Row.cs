@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Rorschach_Launcher
 {
     class Row
     {
-        public string Image { get; set; }
+        public Image Image { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
         public string Frame { get; set; }
