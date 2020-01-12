@@ -10,7 +10,7 @@ public class Logger
     public static void LogToFile(string path, string nameOfImage, string startingTime, string endingTime, int framesToWait, string currentTime)
     {
         StreamWriter sw = new StreamWriter(path, true);
-        string stringToWrite = nameOfImage + " kép;Vetítés kezdete: " + startingTime + ";Vetítés vége: " + endingTime + ";" + framesToWait  + " frame;" + "Eltelt idő: " + currentTime;
+        string stringToWrite = nameOfImage + ";Vetítés kezdete: " + startingTime + ";Vetítés vége: " + endingTime + ";" + framesToWait  + " frame;" + "Eltelt idő: " + currentTime;
         sw.WriteLine(stringToWrite);
         sw.Close();
     }

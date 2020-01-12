@@ -42,7 +42,7 @@ public class DataHolder : MonoBehaviour
         {
             ImagesFolder = "D:\\kepek";
             Frames = 10;
-            FolderToLog = "D:\\";
+            FolderToLog = "D:\\Unity Debug";
             LogFileName = "DefaultFile.txt";
             PatientInfo = "DefaultPatientInfo";
         }

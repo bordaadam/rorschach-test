@@ -30,11 +30,6 @@ public class ImageManager : MonoBehaviour
         textures = Reader.GetImagesFromDirectory(data.ImagesFolder);
         Debug.Log("Betöltött képek száma: " + textures.Count);
 
-        if(rawImageComponent == null)
-        {
-            Debug.LogWarning("RawImageComponent is null, but it shouldn't be!");
-        }
-
         if(!Logger.FileExists(data.FolderToLog + "\\" + data.LogFileName))
         {
             Logger.Log(data.FolderToLog + "\\" + data.LogFileName, data.PatientInfo);

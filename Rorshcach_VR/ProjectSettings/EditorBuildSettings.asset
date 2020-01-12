@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Field.unity
     guid: 11bafccb2b3a2694e84b8d8a780ca42c
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 9a912711ce9647b4182bce75c49a5890
   m_configObjects: {}
