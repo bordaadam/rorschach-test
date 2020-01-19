@@ -5,15 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    void Update()
+    private void OnTriggerEnter(Collider other) 
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(other.GetComponent<PatientMovement>())
         {
             SceneManager.LoadScene(0);
-        } 
-        else if(Input.GetKeyDown(KeyCode.RightControl))
-        {
-            SceneManager.LoadScene(1);
         }
     }
+
 }
