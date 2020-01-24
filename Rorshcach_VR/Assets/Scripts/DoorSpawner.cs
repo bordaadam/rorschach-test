@@ -24,7 +24,7 @@ public class DoorSpawner : MonoBehaviour
         {
             GameObject door = Instantiate(doorPrefab);
             Vector3 hp = hit.point;
-            door.transform.position = new Vector3(hp.x, 0, hp.z);
+            door.transform.position = new Vector3(hp.x, 1.5f, hp.z);
 
             if(Mathf.Abs(hit.transform.eulerAngles.y) == 90)
             {

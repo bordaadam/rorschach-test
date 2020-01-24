@@ -12,5 +12,4 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
-
 }

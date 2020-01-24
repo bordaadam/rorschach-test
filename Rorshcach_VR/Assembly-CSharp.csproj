@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\LightGoesOut.cs" />
      <Compile Include="Assets\Scripts\LightManager.cs" />
      <Compile Include="Assets\Scripts\Logger.cs" />
+     <Compile Include="Assets\Scripts\MazeManager.cs" />
      <Compile Include="Assets\Scripts\PatientMovement.cs" />
      <Compile Include="Assets\Scripts\Reader.cs" />
      <Compile Include="Assets\Scripts\SavWav.cs" />
