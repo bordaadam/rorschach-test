@@ -20,7 +20,6 @@ public class LightGoesOut : MonoBehaviour
     private void Start() {
         light = GetComponent<Light>();
         source = GetComponent<AudioSource>();
-        particleSystem.gameObject.SetActive(false);
     }   
 
     private void OnTriggerEnter(Collider other) 

@@ -6,52 +6,33 @@ using UnityEngine.SceneManagement;
 public class MazeManager : MonoBehaviour
 {
     [SerializeField] private List<Light> lights;
-    private const float DEFAULT_INTENSITY = 1f;
-    private const float HALF_INTENSITY = 0.5f;
-    private const float FADE_TIME = 200f;
 
 
     private void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetAxis("Mouse ScrollWheel") < 0f) 
         {
-
-            foreach(var l in lights)
+            for(int i = 0; i < lights.Count; i++)
             {
-            StartCoroutine(FadeLight(l, DEFAULT_INTENSITY));
-                
+                lights[i].intensity -= 0.05f;
             }
-
         } 
-        else if(Input.GetKeyDown(KeyCode.V)) 
+        else if(Input.GetAxis("Mouse ScrollWheel") > 0f) 
         {
-
-            foreach(var l in lights)
+            for(int i = 0; i < lights.Count; i++)
             {
-            StartCoroutine(FadeLight(l, HALF_INTENSITY));
+                lights[i].intensity += 0.05f;
             }
         }
-        else if(Input.GetKeyDown(KeyCode.B)) 
+
+        if(Input.GetKeyDown(KeyCode.X))
         {
-            foreach(var l in lights)
+            for(int i = 0; i < lights.Count; i++)
             {
-                l.GetComponent<LightGoesOut>().CanGoesOut = true;
+                lights[i].GetComponent<LightGoesOut>().CanGoesOut = true;
             }
         }
-        
-    }
 
-    IEnumerator FadeLight(Light light, float to)
-    {
-        var t = 0.0f;
-
-        while(t < FADE_TIME)
-        {
-            t += Time.deltaTime;
-
-            light.intensity = Mathf.Lerp(light.intensity, to, t / FADE_TIME);
-            yield return 0;
-        }
     }
 
 }
