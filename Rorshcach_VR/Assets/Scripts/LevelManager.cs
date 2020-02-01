@@ -12,4 +12,12 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
+
+    private void Update() 
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            SceneManager.LoadScene(2); // maze With Objects
+        }    
+    }
 }
