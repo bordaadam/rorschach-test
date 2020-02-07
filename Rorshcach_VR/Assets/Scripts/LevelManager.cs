@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     {
         if(other.GetComponent<PatientMovement>())
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 

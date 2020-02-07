@@ -13,7 +13,7 @@ public class DataHolder : MonoBehaviour
     public int Frames { get; set; }
     public string FolderToLog { get; set; }
     public string LogFileName { get; set; }
-    public string PatientInfo { get; set; }
+    public TimeSpan StartingDateTime { get; set; }
 
     private void Awake() 
     {
@@ -36,15 +36,15 @@ public class DataHolder : MonoBehaviour
             Frames = Int32.Parse(parameters[2]);
             FolderToLog = parameters[3];
             LogFileName = parameters[4];
-            PatientInfo = parameters[5];
+            StartingDateTime = TimeSpan.Parse(parameters[5]);
         } 
         else 
         {
-            ImagesFolder = "D:\\kepek";
+            ImagesFolder = "D:\\Szakdolgozat_Cuccok\\kepek";
             Frames = 10;
-            FolderToLog = "D:\\Unity Debug";
+            FolderToLog = "D:\\Szakdolgozat_Cuccok";
             LogFileName = "DefaultFile.txt";
-            PatientInfo = "DefaultPatientInfo";
+            StartingDateTime = TimeSpan.Parse("21:51:51.123");
         }
     }
 }

@@ -16,11 +16,9 @@ namespace Rorschach_Launcher
 {
     public partial class OpenLogFileWindow : Form
     {
-        private string filePath;
-        private string _audioPath;
         private System.Media.SoundPlayer player;
-
         private IList<Row> data = new List<Row>();
+
         public OpenLogFileWindow()
         {
             InitializeComponent();
@@ -28,51 +26,22 @@ namespace Rorschach_Launcher
 
         private void button_open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select a log file!";
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                filePath = ofd.FileName;
-            }
-
-            System.IO.StreamReader file = new System.IO.StreamReader(filePath);
+            System.IO.StreamReader file = new System.IO.StreamReader(logFile.Text);
+            player = new System.Media.SoundPlayer(voice.Text);
+            player.Load();
             string line;
-            int counter = 1;
 
             while ((line = file.ReadLine()) != null)
             {
-                
-                if (counter <= 2)
-                {
-                    if(counter == 1)
-                    {
-                        counter++;
-                        continue;
-                        //TODO: páciens infó!
-                    } else if(counter == 2)
-                    {
-                        _audioPath = line;
-                        player = new System.Media.SoundPlayer(_audioPath);
-                        player.Load();
-                        counter++;
-                        continue;
-                    }
-                }
-
-
                 string[] dataSlices = line.Split(';');
                 this.data.Add(new Row()
                 {
-                    //Image = Image.FromFile(dataSlices[0]),
                     Image = ResizeImage(Image.FromFile(dataSlices[0]), 100, 100),
                     Start = dataSlices[1],
                     End = dataSlices[2],
                     Frame = dataSlices[3],
                     AudioTime = dataSlices[4]
                 }) ;
-                
-
             }
 
             gridView.DataSource = this.data;
@@ -81,21 +50,18 @@ namespace Rorschach_Launcher
             button.Text = "Play!";
             button.UseColumnTextForButtonValue = true;
             gridView.Columns.Add(button);
-
             gridView.Visible = true;
         }
 
         private void PlayAudio(double whereFrom)
         {
-            var file = new AudioFileReader(_audioPath);
+            var file = new AudioFileReader(voice.Text);
             var trimmed = new OffsetSampleProvider(file);
             trimmed.SkipOver = TimeSpan.FromSeconds(whereFrom);
-            trimmed.Take = TimeSpan.FromSeconds(5);
-
+            trimmed.Take = TimeSpan.FromSeconds((double)numericUpDown1.Value);
             var player = new WaveOutEvent();
             player.Init(trimmed);
             player.Play();
-
         }
 
         // TODO: from stackoverflow
@@ -134,6 +100,28 @@ namespace Rorschach_Launcher
                 double sec = double.Parse(tmp[2]);
                 Console.WriteLine("Ennyi időnél fogja lejátszani: " + sec);
                 PlayAudio(sec);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select a log file!";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                logFile.Text = ofd.FileName;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select a voice file!";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                voice.Text = ofd.FileName;
             }
         }
     }

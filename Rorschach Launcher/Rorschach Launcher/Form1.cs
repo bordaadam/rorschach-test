@@ -14,6 +14,10 @@ namespace Rorschach_Launcher
 {
     public partial class Form1 : Form
     {
+        string startingDate;
+
+
+        Recorder recorder;
         public Form1()
         {
             InitializeComponent();
@@ -35,25 +39,24 @@ namespace Rorschach_Launcher
 
         private void button_launch_Click(object sender, EventArgs e)
         {
-
             string exePath = textBox_exe.Text;
 
             // Values to send to Unity
-            string patient = textBox_patient.Text;
             string folderPath = textBox_folder.Text;
             string frame = numericUpDown_frame.Value.ToString();
             string folderToLog = textBox_folderToLog.Text;
             string nameOfFile = textBox_nameOfFile.Text;
-            SaveSettings(patient, folderPath, frame, folderToLog, nameOfFile, exePath);
+            SaveSettings(folderPath, frame, folderToLog, nameOfFile, exePath);
 
             if(!nameOfFile.Contains(".txt"))
             {
                 nameOfFile += ".txt";
             }
 
+
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = exePath;
-            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile + " " + patient;
+            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile + " " + startingDate;
             try
             {
                 Process.Start(info);
@@ -90,10 +93,9 @@ namespace Rorschach_Launcher
             }
         }
 
-        private void SaveSettings(string patient, string folderPath, string frame, string folderToLog, string nameOfFile, string exePath)
+        private void SaveSettings(string folderPath, string frame, string folderToLog, string nameOfFile, string exePath)
         {
             RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Rorschach\Settings");
-            key.SetValue("patient", patient);
             key.SetValue("folderPath", folderPath);
             key.SetValue("frame", frame);
             key.SetValue("folderToLog", folderToLog);
@@ -107,13 +109,11 @@ namespace Rorschach_Launcher
 
             if(key != null)
             {
-                textBox_patient.Text = key.GetValue("patient").ToString();
                 textBox_folder.Text = key.GetValue("folderPath").ToString();
                 textBox_exe.Text = key.GetValue("exePath").ToString();
                 numericUpDown_frame.Value = int.Parse(key.GetValue("frame").ToString());
                 textBox_folderToLog.Text = key.GetValue("folderToLog").ToString();
                 textBox_nameOfFile.Text = key.GetValue("nameOfFile").ToString();
-
             }
         }
 
@@ -122,6 +122,25 @@ namespace Rorschach_Launcher
             using(var w = new OpenLogFileWindow())
             {
                 w.ShowDialog();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(toggle.Checked)
+            {
+                toggle.Text = "STOP RECORDING!";
+                toggle.ForeColor = Color.Red;
+                string fileName = DateTime.Now.ToString("HH-mm-ss") + ".wav";
+                recorder = new Recorder(0, textBox_folderToLog.Text, fileName);
+                recorder.StartRecording();
+                startingDate = DateTime.Now.ToString("HH:mm:ss.fff");
+
+            } else
+            {
+                toggle.Text = "RECORD!";
+                toggle.ForeColor = Color.Black;
+                recorder.RecordEnd();
             }
         }
     }

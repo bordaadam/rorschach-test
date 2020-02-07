@@ -1,10 +1,4 @@
-﻿/*
--Átírni, hogy elérési útként elmenteni a hangfájlt és azt beolvasva nyissa meg minden a launcher
-
-*/
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,30 +13,17 @@ public class ImageManager : MonoBehaviour
     [SerializeField] private RawImage rawImageComponent;
     private string cmdInfo = "";
     private int secondsFromStart = 0;
-    private DateTime startingDateTime;
+    private TimeSpan startingDateTime;
     DataHolder data;
 
     void Start()
     {
-        //TODO: talán static legyn az összes, nem is kéne singleton? --> akkor a bool paramétert hogy állítsam?
         data = DataHolder.Instance;
         data.InitializeParams();
         textures = Reader.GetImagesFromDirectory(data.ImagesFolder);
         Debug.Log("Betöltött képek száma: " + textures.Count);
-
-        if(!Logger.FileExists(data.FolderToLog + "\\" + data.LogFileName))
-        {
-            Logger.Log(data.FolderToLog + "\\" + data.LogFileName, data.PatientInfo);
-            //TODO: milyen névként mentse el az adott hangfájlt?
-            Logger.Log(data.FolderToLog + "\\" + data.LogFileName, data.FolderToLog +  "\\hang.wav"); //TODO: ez ua. mint a 65.sor!!!!
-        }
-
-        cmdInfo += data.ImagesFolder + "\n" + data.Frames + "\n" + data.FolderToLog + "\n" + data.LogFileName + "\n" + data.PatientInfo;
-
-        startingDateTime = DateTime.Now;
-
-        // Elkezdődött a hangfelvétel....
-        AudioManager.audioClip = Microphone.Start(null, false, 100, 44100);
+        cmdInfo += data.ImagesFolder + "\n" + data.Frames + "\n" + data.FolderToLog + "\n" + data.LogFileName + "\n" + data.StartingDateTime;
+        startingDateTime = data.StartingDateTime;
     }
 
     void OnGUI()
@@ -53,12 +34,6 @@ public class ImageManager : MonoBehaviour
 
     void Update()
     {
-
-        // TODO: kilépéskor automatikusan elmentse a hangot
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            AudioManager.SaveAudioClipToWav("hang"); //TODO: ez ua. mint a 42. sor
-        }
         HandleInput();
     }
 
@@ -197,9 +172,7 @@ public class ImageManager : MonoBehaviour
             yield break;
 
         rawImageComponent.texture = textures[index];
-        ShowImage();
-
-        //innen kell a különbséget száolnunk
+        ShowImage(true);
 
         DateTime current = DateTime.Now;
         string startTime = current.ToString("HH:mm:ss.fff");
@@ -208,21 +181,16 @@ public class ImageManager : MonoBehaviour
             x--;
             yield return null;
         }
-        HideImage();
+        ShowImage(false);
         string endTime = DateTime.Now.ToString("HH:mm:ss.fff");
-        TimeSpan elapsedTime = current - startingDateTime;
-        Logger.LogToFile(data.FolderToLog + "\\" + data.LogFileName, textures[index].name, startTime, endTime, data.Frames, elapsedTime.Seconds.ToString());
+        TimeSpan elapsedTime = TimeSpan.Parse(startTime) - startingDateTime;
+        Logger.LogToFile(data.FolderToLog + "\\" + data.LogFileName, textures[index].name, startTime, endTime, data.Frames, elapsedTime.TotalSeconds.ToString());
         Debug.Log("Ez a kep lett megjelenitve: " + textures[index].name);
     }
 
-    private void ShowImage()
+    private void ShowImage(bool show)
     {
-        rawImageComponent.enabled = true;
-    }
-
-    private void HideImage()
-    {
-        rawImageComponent.enabled = false;
+        rawImageComponent.enabled = show;
     }
 
 }

@@ -7,10 +7,10 @@ using System.IO;
 public class Logger
 {
 
-    public static void LogToFile(string path, string nameOfImage, string startingTime, string endingTime, int framesToWait, string currentTime)
+    public static void LogToFile(string path, string nameOfImage, string startingTime, string endingTime, int framesToWait, string elapsedTime)
     {
         StreamWriter sw = new StreamWriter(path, true);
-        string stringToWrite = nameOfImage + ";Vetítés kezdete: " + startingTime + ";Vetítés vége: " + endingTime + ";" + framesToWait  + " frame;" + "Eltelt idő: " + currentTime;
+        string stringToWrite = nameOfImage + ";Vetítés kezdete: " + startingTime + ";Vetítés vége: " + endingTime + ";" + framesToWait  + " frame;" + "Eltelt idő: " + elapsedTime;
         sw.WriteLine(stringToWrite);
         sw.Close();
     }
@@ -20,11 +20,6 @@ public class Logger
         StreamWriter sw = new StreamWriter(path, true);
         sw.WriteLine(text);
         sw.Close();
-    }
-
-    public static bool FileExists(string path)
-    {
-        return File.Exists(path);
     }
 
 }
