@@ -8,6 +8,7 @@ public class PatientMovement : MonoBehaviour
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float timeBetweenSteps = 0.5f;
+    [SerializeField] private float rotateSpeed;
     private bool canPlay = true;
     private AudioSource audioSource;
 
@@ -22,14 +23,15 @@ public class PatientMovement : MonoBehaviour
 
     void Update()
     {
-        movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        movement = movement.normalized * movementSpeed;
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        HandleMovement();
+        HandleRotation();
+        
         if(movement != Vector3.zero && !audioSource.isPlaying && canPlay)
         {
             StartCoroutine(WaitSound(timeBetweenSteps));
             audioSource.Play();
         }
+
     }
 
     IEnumerator WaitSound(float t) 
@@ -42,6 +44,29 @@ public class PatientMovement : MonoBehaviour
     void FixedUpdate() 
     {
         rigidbody.velocity = movement;
+    }
+
+    void HandleMovement()
+    {
+        movement = Vector3.zero;
+        if(Input.GetKey(KeyCode.W))
+        {
+            movement = transform.forward;
+            movement = movement.normalized * movementSpeed;
+        }
+    }
+
+    void HandleRotation()
+    {
+        if(Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(new Vector3(0, -rotateSpeed * Time.deltaTime, 0), Space.Self);
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0), Space.Self);
+        }
     }
 
 }
