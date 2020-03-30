@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button_open = new System.Windows.Forms.Button();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.logFile = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +76,7 @@
             this.logFile.ReadOnly = true;
             this.logFile.Size = new System.Drawing.Size(275, 20);
             this.logFile.TabIndex = 4;
+            this.toolTip.SetToolTip(this.logFile, "Browse the log file");
             // 
             // label1
             // 
@@ -100,6 +103,7 @@
             this.voice.ReadOnly = true;
             this.voice.Size = new System.Drawing.Size(275, 20);
             this.voice.TabIndex = 7;
+            this.toolTip.SetToolTip(this.voice, "Browse the vocie file of the log file");
             // 
             // button1
             // 
@@ -132,6 +136,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 10;
+            this.toolTip.SetToolTip(this.numericUpDown1, "Audio playing time in seconds");
             this.numericUpDown1.Value = new decimal(new int[] {
             10,
             0,
@@ -146,6 +151,14 @@
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Play Time:";
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 5000;
+            this.toolTip.InitialDelay = 1;
+            this.toolTip.IsBalloon = true;
+            this.toolTip.ReshowDelay = 0;
+            this.toolTip.ShowAlways = true;
             // 
             // OpenLogFileWindow
             // 
@@ -183,5 +196,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

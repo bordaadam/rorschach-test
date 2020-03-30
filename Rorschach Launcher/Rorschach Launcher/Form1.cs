@@ -45,14 +45,8 @@ namespace Rorschach_Launcher
             string folderPath = textBox_folder.Text;
             string frame = numericUpDown_frame.Value.ToString();
             string folderToLog = textBox_folderToLog.Text;
-            string nameOfFile = textBox_nameOfFile.Text;
+            string nameOfFile = textBox_nameOfFile.Text + "." + dropDown.SelectedItem.ToString();
             SaveSettings(folderPath, frame, folderToLog, nameOfFile, exePath);
-
-            if(!nameOfFile.Contains(".txt"))
-            {
-                nameOfFile += ".txt";
-            }
-
 
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = exePath;
@@ -143,5 +137,11 @@ namespace Rorschach_Launcher
                 recorder.RecordEnd();
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dropDown.SelectedItem = dropDown.Items[0];
+        }
+
     }
 }

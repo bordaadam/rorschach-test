@@ -58260,6 +58260,11 @@ PrefabInstance:
       propertyPath: rawImageComponent
       value: 
       objectReference: {fileID: 821307387}
+    - target: {fileID: 4664143841794973112, guid: 56ca2f6a225c563428f11910255cf069,
+        type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1017694133, guid: 56ca2f6a225c563428f11910255cf069, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 56ca2f6a225c563428f11910255cf069, type: 3}
@@ -71358,6 +71363,11 @@ PrefabInstance:
       propertyPath: rotateSpeed
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 2678719468177376546, guid: be72000cea13f22429f817c0af8a0f6d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 964540139, guid: be72000cea13f22429f817c0af8a0f6d, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -71377,11 +71387,6 @@ PrefabInstance:
     - target: {fileID: 964540139, guid: be72000cea13f22429f817c0af8a0f6d, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2678719468177376546, guid: be72000cea13f22429f817c0af8a0f6d,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be72000cea13f22429f817c0af8a0f6d, type: 3}

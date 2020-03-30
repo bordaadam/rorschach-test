@@ -26,7 +26,7 @@ public class DataHolder : MonoBehaviour
     // 2 - displaying duration in frames
     // 3 - folder to log into
     // 4 - name of the logged file
-    // 5 - patient info
+    // 5 - time
     public void InitializeParams()
     {
         if(!debug)

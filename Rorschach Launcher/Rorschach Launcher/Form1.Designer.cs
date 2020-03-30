@@ -47,6 +47,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openLogFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggle = new System.Windows.Forms.CheckBox();
+            this.dropDown = new System.Windows.Forms.ComboBox();
+            this.label_extension = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frame)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -234,11 +236,34 @@
             this.toggle.UseVisualStyleBackColor = true;
             this.toggle.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // dropDown
+            // 
+            this.dropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropDown.FormattingEnabled = true;
+            this.dropDown.Items.AddRange(new object[] {
+            ".txt",
+            ".csv"});
+            this.dropDown.Location = new System.Drawing.Point(501, 258);
+            this.dropDown.Name = "dropDown";
+            this.dropDown.Size = new System.Drawing.Size(121, 21);
+            this.dropDown.TabIndex = 20;
+            // 
+            // label_extension
+            // 
+            this.label_extension.AutoSize = true;
+            this.label_extension.Location = new System.Drawing.Point(439, 262);
+            this.label_extension.Name = "label_extension";
+            this.label_extension.Size = new System.Drawing.Size(56, 13);
+            this.label_extension.TabIndex = 21;
+            this.label_extension.Text = "Extension:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label_extension);
+            this.Controls.Add(this.dropDown);
             this.Controls.Add(this.toggle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_nameOfFile);
@@ -258,6 +283,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Launcher";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frame)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -286,6 +312,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem openLogFileToolStripMenuItem;
         private System.Windows.Forms.CheckBox toggle;
+        private System.Windows.Forms.ComboBox dropDown;
+        private System.Windows.Forms.Label label_extension;
     }
 }
 
