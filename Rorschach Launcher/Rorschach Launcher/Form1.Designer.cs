@@ -106,6 +106,7 @@
             0,
             0});
             this.numericUpDown_frame.Name = "numericUpDown_frame";
+            this.numericUpDown_frame.ReadOnly = true;
             this.numericUpDown_frame.Size = new System.Drawing.Size(52, 20);
             this.numericUpDown_frame.TabIndex = 4;
             this.toolTip.SetToolTip(this.numericUpDown_frame, "Displaying duration in frames");

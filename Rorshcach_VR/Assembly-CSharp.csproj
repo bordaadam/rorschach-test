@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>D:\Unity\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -59,6 +57,7 @@
      <Compile Include="Assets\Scripts\DataHolder.cs" />
      <Compile Include="Assets\Scripts\DoorSpawner.cs" />
      <Compile Include="Assets\Scripts\ImageManager.cs" />
+     <Compile Include="Assets\Scripts\KeyBinding.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\LightGoesOut.cs" />
      <Compile Include="Assets\Scripts\LightManager.cs" />

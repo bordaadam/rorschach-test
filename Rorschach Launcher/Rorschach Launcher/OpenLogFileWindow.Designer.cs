@@ -37,11 +37,11 @@
             this.voice = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.timeToPlay = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeToPlay)).BeginInit();
             this.SuspendLayout();
             // 
             // button_open
@@ -125,19 +125,20 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // numericUpDown1
+            // timeToPlay
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(997, 22);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.timeToPlay.Location = new System.Drawing.Point(997, 22);
+            this.timeToPlay.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 10;
-            this.toolTip.SetToolTip(this.numericUpDown1, "Audio playing time in seconds");
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.timeToPlay.Name = "timeToPlay";
+            this.timeToPlay.ReadOnly = true;
+            this.timeToPlay.Size = new System.Drawing.Size(120, 20);
+            this.timeToPlay.TabIndex = 10;
+            this.toolTip.SetToolTip(this.timeToPlay, "Audio playing time in seconds");
+            this.timeToPlay.Value = new decimal(new int[] {
             10,
             0,
             0,
@@ -166,7 +167,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 661);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.timeToPlay);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.voice);
@@ -178,7 +179,7 @@
             this.Name = "OpenLogFileWindow";
             this.Text = "OpenLogFileWindow";
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeToPlay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,7 +195,7 @@
         private System.Windows.Forms.TextBox voice;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown timeToPlay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip toolTip;
     }

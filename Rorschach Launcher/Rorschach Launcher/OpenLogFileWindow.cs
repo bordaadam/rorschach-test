@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 
 namespace Rorschach_Launcher
 {
@@ -26,7 +28,7 @@ namespace Rorschach_Launcher
 
         private void button_open_Click(object sender, EventArgs e)
         {
-            System.IO.StreamReader file = new System.IO.StreamReader(logFile.Text);
+            System.IO.StreamReader file = new StreamReader(logFile.Text);
             player = new System.Media.SoundPlayer(voice.Text);
             player.Load();
             string line;
@@ -58,7 +60,7 @@ namespace Rorschach_Launcher
             var file = new AudioFileReader(voice.Text);
             var trimmed = new OffsetSampleProvider(file);
             trimmed.SkipOver = TimeSpan.FromSeconds(whereFrom);
-            trimmed.Take = TimeSpan.FromSeconds((double)numericUpDown1.Value);
+            trimmed.Take = TimeSpan.FromSeconds((double)timeToPlay.Value);
             var player = new WaveOutEvent();
             player.Init(trimmed);
             player.Play();
@@ -92,13 +94,10 @@ namespace Rorschach_Launcher
 
         private void gridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine(e.RowIndex + ";" + e.ColumnIndex);
-            if(e.ColumnIndex == 0) // Gombok oszlopa...... Valamiért a nullás oszlop az??
+            if(e.ColumnIndex == 0)
             {
-                // Eltelt idő: 4
                 string[] tmp = data[e.RowIndex].AudioTime.Split();
                 double sec = double.Parse(tmp[2]);
-                Console.WriteLine("Ennyi időnél fogja lejátszani: " + sec);
                 PlayAudio(sec);
             }
         }

@@ -39,28 +39,43 @@ namespace Rorschach_Launcher
 
         private void button_launch_Click(object sender, EventArgs e)
         {
-            string exePath = textBox_exe.Text;
 
-            // Values to send to Unity
-            string folderPath = textBox_folder.Text;
-            string frame = numericUpDown_frame.Value.ToString();
-            string folderToLog = textBox_folderToLog.Text;
-            string nameOfFile = textBox_nameOfFile.Text + "." + dropDown.SelectedItem.ToString();
-            SaveSettings(folderPath, frame, folderToLog, nameOfFile, exePath);
-
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = exePath;
-            info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile + " " + startingDate;
-            try
+            if(ValidateForm())
             {
-                Process.Start(info);
+                string exePath = textBox_exe.Text;
+                string folderPath = textBox_folder.Text;
+                string frame = numericUpDown_frame.Value.ToString();
+                string folderToLog = textBox_folderToLog.Text;
+                string nameOfFile = textBox_nameOfFile.Text + "." + dropDown.SelectedItem.ToString();
+                SaveSettings(folderPath, frame, folderToLog, nameOfFile, exePath);
 
-            }
-            catch (Exception ex)
+                ProcessStartInfo info = new ProcessStartInfo();
+                info.FileName = exePath;
+                info.Arguments = folderPath + " " + frame + " " + folderToLog + " " + nameOfFile + " " + startingDate;
+                try
+                {
+                    Process.Start(info);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error occurred during starting Unity process...", "Error", MessageBoxButtons.OK);
+                    Console.WriteLine($"Something went wrong: {ex.Message}");
+
+                }
+            } else
             {
-                Console.WriteLine("Something went wrong...");
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("You need to fill all of the input of this form!", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private bool ValidateForm()
+        {
+            if(textBox_exe.TextLength > 0 && textBox_folder.TextLength > 0 && textBox_folderToLog.TextLength > 0 && textBox_nameOfFile.TextLength > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void button_exe_Click(object sender, EventArgs e)
@@ -125,7 +140,7 @@ namespace Rorschach_Launcher
             {
                 toggle.Text = "STOP RECORDING!";
                 toggle.ForeColor = Color.Red;
-                string fileName = DateTime.Now.ToString("HH-mm-ss") + ".wav";
+                string fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".wav";
                 recorder = new Recorder(0, textBox_folderToLog.Text, fileName);
                 recorder.StartRecording();
                 startingDate = DateTime.Now.ToString("HH:mm:ss.fff");
