@@ -24,10 +24,6 @@ public class ImageManager : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
-    }
-
-    private void HandleInput() {
         if(Input.anyKeyDown) {
             foreach(var key in KeyBinding.binding.Keys) {
                 if(Input.GetKeyDown(key)) {
