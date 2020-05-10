@@ -22,6 +22,7 @@ namespace Rorschach_Launcher
         {
             InitializeComponent();
             LoadSettings();
+            startingDate = DateTime.Now.ToString("HH:mm:ss.fff");
         }
 
         private void button_selectDirectory_Click(object sender, EventArgs e)
@@ -39,7 +40,6 @@ namespace Rorschach_Launcher
 
         private void button_launch_Click(object sender, EventArgs e)
         {
-
             if(ValidateForm())
             {
                 string exePath = textBox_exe.Text;

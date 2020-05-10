@@ -61,9 +61,11 @@
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\LightGoesOut.cs" />
      <Compile Include="Assets\Scripts\LightManager.cs" />
+     <Compile Include="Assets\Scripts\LoadMaze.cs" />
      <Compile Include="Assets\Scripts\Logger.cs" />
      <Compile Include="Assets\Scripts\MazeManager.cs" />
      <Compile Include="Assets\Scripts\PatientMovement.cs" />
+     <Compile Include="Assets\Scripts\QuitManager.cs" />
      <Compile Include="Assets\Scripts\Reader.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
      <None Include="Assets\Day-Night Skyboxes\readme.txt" />

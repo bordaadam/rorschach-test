@@ -28,31 +28,53 @@ namespace Rorschach_Launcher
 
         private void button_open_Click(object sender, EventArgs e)
         {
-            System.IO.StreamReader file = new StreamReader(logFile.Text);
-            player = new System.Media.SoundPlayer(voice.Text);
-            player.Load();
-            string line;
 
-            while ((line = file.ReadLine()) != null)
+            if(IsValidInputs())
             {
-                string[] dataSlices = line.Split(';');
-                this.data.Add(new Row()
+                System.IO.StreamReader file = new StreamReader(logFile.Text);
+                player = new System.Media.SoundPlayer(voice.Text);
+                player.Load();
+                string line;
+
+                while ((line = file.ReadLine()) != null)
                 {
-                    Image = ResizeImage(Image.FromFile(dataSlices[0]), 100, 100),
-                    Start = dataSlices[1],
-                    End = dataSlices[2],
-                    Frame = dataSlices[3],
-                    AudioTime = dataSlices[4]
-                }) ;
+                    string[] dataSlices = line.Split(';');
+                    this.data.Add(new Row()
+                    {
+                        Image = ResizeImage(Image.FromFile(dataSlices[0]), 100, 100),
+                        Start = dataSlices[1],
+                        End = dataSlices[2],
+                        Frame = dataSlices[3],
+                        AudioTime = dataSlices[4]
+                    }) ;
+                }
+
+                gridView.DataSource = this.data;
+                DataGridViewButtonColumn button = new DataGridViewButtonColumn();
+                button.HeaderText = "Audio";
+                button.Text = "Play!";
+                button.UseColumnTextForButtonValue = true;
+                gridView.Columns.Add(button);
+                gridView.Visible = true;
+
+            } else
+            {
+                MessageBox.Show("You need to fill all of the input of this form!", "Error", MessageBoxButtons.OK);
             }
 
-            gridView.DataSource = this.data;
-            DataGridViewButtonColumn button = new DataGridViewButtonColumn();
-            button.HeaderText = "Audio";
-            button.Text = "Play!";
-            button.UseColumnTextForButtonValue = true;
-            gridView.Columns.Add(button);
-            gridView.Visible = true;
+        }
+
+        private bool IsValidInputs()
+        {
+            string logf = logFile.Text;
+            string voicef = voice.Text;
+
+            if(logf.Equals("") || voice.Equals(""))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void PlayAudio(double whereFrom)
@@ -66,7 +88,6 @@ namespace Rorschach_Launcher
             player.Play();
         }
 
-        // TODO: from stackoverflow
         public static Bitmap ResizeImage(Image image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);

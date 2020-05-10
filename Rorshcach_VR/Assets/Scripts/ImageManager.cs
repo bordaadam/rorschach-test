@@ -35,16 +35,16 @@ public class ImageManager : MonoBehaviour
 
     private IEnumerator WaitForXFrames(int index)
     {
-        int x = data.Frames;
         if(index >= textures.Count)
             yield break;
+
+        int x = data.Frames;
 
         rawImageComponent.texture = textures[index];
         ShowImage(true);
 
-        DateTime current = DateTime.Now;
-        string startTime = current.ToString("HH:mm:ss.fff");
-        while(x > 0)
+        string startTime = DateTime.Now.ToString("HH:mm:ss.fff");
+        while(x >= 0)
         {
             x--;
             yield return null;
