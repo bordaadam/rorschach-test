@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-//TODO: szépíteni a kódot
-//TODO: lehet itt kéne az audioclip és amazt az osztály teljesen kitörölhetnénk, és itt érnénk el simán a sawwav-t
-//TODO: csak akkor írjuk át mondjuk ezt Master-re.
 public class ImageManager : MonoBehaviour
 {
     [SerializeField] private RawImage rawImageComponent;
